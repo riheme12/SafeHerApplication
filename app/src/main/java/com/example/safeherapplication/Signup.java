@@ -74,7 +74,9 @@ public class Signup extends AppCompatActivity {
         loginLink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish(); // Navigate back to login
+                startActivity(new Intent(Signup.this, Login.class));
+                finish();
+
             }
         });
 
@@ -104,7 +106,7 @@ public class Signup extends AppCompatActivity {
                         .setTitle("Account Created!")
                         .setMessage("Welcome to SafeHer. Your safety is our priority.")
                         .setPositiveButton("Get Started", (dialog, which) -> {
-                            startActivity(new Intent(Signup.this, MainActivity.class));
+                            startActivity(new Intent(Signup.this, Login.class));
                             finish();
                         })
                         .show();
@@ -112,4 +114,3 @@ public class Signup extends AppCompatActivity {
         });
     }
     }
-}
