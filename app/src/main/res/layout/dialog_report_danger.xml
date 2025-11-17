@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <!-- Use Current Location Button -->
+            <Button
+                android:id="@+id/useCurrentLocationBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📍 Utiliser ma position actuelle"
+                android:textSize="14sp"
+                android:textColor="@android:color/white"
+                android:background="#34C759"
+                android:padding="12dp"
+                android:textAllCaps="false"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/dangerLocationInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Localisation (nom de rue) *"
+                android:inputType="text"
+                android:padding="12dp"
+                android:background="#F8F8FF"
+                android:layout_marginBottom="12dp"/>
+
+            <EditText
+                android:id="@+id/dangerTitleInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Type de danger (ex: Harcèlement, Éclairage faible) *"
+                android:inputType="text"
+                android:padding="12dp"
+                android:background="#F8F8FF"
+                android:layout_marginBottom="12dp"/>
+
+            <EditText
+                android:id="@+id/dangerDescriptionInput"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Description détaillée (optionnel)"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:maxLines="5"
+                android:gravity="top"
+                android:padding="12dp"
+                android:background="#F8F8FF"
+                android:layout_marginBottom="16dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Niveau de danger *"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#2E2E2E"
+                android:paddingBottom="8dp"/>
+
+            <RadioGroup
+                android:id="@+id/severityRadioGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="8dp">
+
+                <RadioButton
+                    android:id="@+id/severityLow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🟡 Faible - Zone peu rassurante"
+                    android:textSize="14sp"
+                    android:padding="8dp"/>
+
+                <RadioButton
+                    android:id="@+id/severityMedium"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🟠 Moyen - Incidents occasionnels"
+                    android:textSize="14sp"
+                    android:padding="8dp"
+                    android:checked="true"/>
+
+                <RadioButton
+                    android:id="@+id/severityHigh"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔴 Élevé - Danger imminent"
+                    android:textSize="14sp"
+                    android:padding="8dp"/>
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="* Champs obligatoires"
+                android:textSize="12sp"
+                android:textColor="#696969"
+                android:textStyle="italic"
+                android:paddingTop="8dp"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ℹ️ Votre signalement sera visible par toutes les utilisatrices sur la carte et dans la liste."
+                android:textSize="11sp"
+                android:textColor="#888888"
+                android:paddingTop="12dp"
+                android:background="#FFF3E0"
+                android:padding="12dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

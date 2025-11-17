@@ -5,5 +5,174 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SafeMapActivity">
+        <LinearLayout
+            android:id="@+id/headerLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@android:color/white"
+            android:elevation="4dp"
+            app:layout_constraintTop_toTopOf="parent">
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="SafeMap 🗺️"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#2E2E2E"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="2dp"
+                android:text="Carte map"
+                android:textColor="#696969"
+                android:textSize="11sp" />
+
+            <!-- Legend -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:paddingTop="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔴 Élevé"
+                    android:textSize="11sp"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🟠 Moyen"
+                    android:textSize="11sp"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🟡 Faible"
+                    android:textSize="11sp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- OpenStreetMap -->
+        <org.osmdroid.views.MapView
+            android:id="@+id/mapView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@id/headerLayout"
+            app:layout_constraintBottom_toTopOf="@id/buttonLayout"/>
+
+        <!-- List Container (Hidden by default) -->
+        <LinearLayout
+            android:id="@+id/listContainer"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@color/cardview_light_background"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/headerLayout"
+            app:layout_constraintBottom_toTopOf="@id/buttonLayout">
+
+            <!-- Info Card -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardBackgroundColor="#E3F2FD"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="🗺️ Carte Collaborative"
+                        android:textSize="13sp"
+                        android:textStyle="bold"
+                        android:textColor="#2E2E2E"
+                        android:paddingBottom="6dp"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Cliquez sur une zone pour la voir sur la carte"
+                        android:textSize="12sp"
+                        android:textColor="#696969"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Empty State -->
+            <TextView
+                android:id="@+id/emptyStateText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Aucune zone signalée"
+                android:textSize="14sp"
+                android:textColor="#696969"
+                android:gravity="center"
+                android:padding="24dp"
+                android:visibility="gone"/>
+
+            <!-- Danger Zones List -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/dangerZonesRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:scrollbars="vertical"/>
+        </LinearLayout>
+
+        <!-- Bottom Buttons -->
+        <LinearLayout
+            android:id="@+id/buttonLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:background="@android:color/white"
+            android:elevation="8dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <!-- Toggle View Button -->
+            <Button
+                android:id="@+id/toggleViewBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="📋 Voir la Liste"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#2E2E2E"
+                android:background="#F0F0F0"
+                android:padding="12dp"
+                android:layout_marginBottom="8dp"
+                android:textAllCaps="false"/>
+
+            <!-- Report Danger Button -->
+            <Button
+                android:id="@+id/reportDangerBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="⚠️ Signaler une zone"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:background="@color/primaryPink"
+                android:padding="14dp"
+                android:textAllCaps="false"/>
+        </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

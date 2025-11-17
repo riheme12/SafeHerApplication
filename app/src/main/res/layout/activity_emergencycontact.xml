@@ -6,4 +6,99 @@
     android:layout_height="match_parent"
     tools:context=".EmergencycontactActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contacts d'Urgence"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#2E2E2E"
+            android:gravity="center"
+            android:paddingBottom="8dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Gérez vos contacts de confiance"
+            android:textSize="14sp"
+            android:textColor="#696969"
+            android:gravity="center"
+            android:paddingBottom="24dp"/>
+
+        <!-- Info Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="#FFF3E0"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="2dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="⚠️ Important"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#2E2E2E"
+                    android:paddingBottom="8dp"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Ces contacts recevront votre position GPS et une alerte lorsque vous activez le bouton SOS ou le mode shake."
+                    android:textSize="13sp"
+                    android:textColor="#696969"/>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <!-- Empty State -->
+        <TextView
+            android:id="@+id/emptyStateText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aucun contact d'urgence\nAjoutez vos contacts de confiance"
+            android:textSize="16sp"
+            android:textColor="#696969"
+            android:gravity="center"
+            android:padding="32dp"
+            android:visibility="gone"/>
+
+        <!-- Contacts List -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/contactsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scrollbars="vertical"/>
+
+        <!-- Add Contact Button -->
+        <Button
+            android:id="@+id/addContactBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="+ Ajouter un contact"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:background="@color/primaryPink"
+            android:padding="16dp"
+            android:layout_marginTop="16dp"
+            android:textAllCaps="false"/>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
