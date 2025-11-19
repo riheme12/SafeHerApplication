@@ -6,6 +6,9 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.USE_FULL_SCREEN_INTENT" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -19,13 +22,18 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+<<<<<<< HEAD
             android:name=".AwarenessRightsActivity"
+=======
+            android:name=".ProfileActivity"
+>>>>>>> 867a934f95b8ebd2a5d7828e1d173afe87897995
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
+<<<<<<< HEAD
             android:name=".SupportResourcesActivity"
             android:exported="false">
             <meta-data
@@ -34,11 +42,23 @@
         </activity>
         <activity
             android:name=".ReportingToolsActivity"
+=======
+            android:name=".ProfileUserActivity"
+>>>>>>> 867a934f95b8ebd2a5d7828e1d173afe87897995
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+<<<<<<< HEAD
+=======
+
+        <service
+            android:name=".FakeCallService"
+            android:enabled="true"
+            android:exported="true" />
+
+>>>>>>> 867a934f95b8ebd2a5d7828e1d173afe87897995
         <activity
             android:name=".Login"
             android:exported="true">

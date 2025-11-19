@@ -1,6 +1,8 @@
 package com.example.safeherapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.RingtoneManager;
@@ -13,14 +15,14 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class FakeCallActivity extends AppCompatActivity {
 
     private EditText callerNameInput;
-    private SeekBar delaySeekBar;
+    private EditText delayEditText;
+
     private TextView delayValueText;
     private Button startCallBtn;
     private View incomingCallLayout;
@@ -32,7 +34,7 @@ public class FakeCallActivity extends AppCompatActivity {
     private MediaPlayer ringtonePlayer;
     private Vibrator vibrator;
     private Handler handler;
-    private int delaySeconds = 5;
+    private int delaySeconds = 5; // valeur par défaut
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +43,14 @@ public class FakeCallActivity extends AppCompatActivity {
 
         // Initialize views
         callerNameInput = findViewById(R.id.callerNameInput);
-        delaySeekBar = findViewById(R.id.delaySeekBar);
+        delayEditText = findViewById(R.id.delayEditText);
         delayValueText = findViewById(R.id.delayValueText);
+
         startCallBtn = findViewById(R.id.startCallBtn);
+
         incomingCallLayout = findViewById(R.id.incomingCallLayout);
         incomingCallerName = findViewById(R.id.incomingCallerName);
+
         acceptBtn = findViewById(R.id.acceptBtn);
         declineBtn = findViewById(R.id.declineBtn);
         callerIcon = findViewById(R.id.callerIcon);
@@ -53,71 +58,72 @@ public class FakeCallActivity extends AppCompatActivity {
         handler = new Handler();
         vibrator = (Vibrator) getSystemService(VIBRATOR_SERVICE);
 
-        // Setup delay seekbar
-        delaySeekBar.setMax(60);
-        delaySeekBar.setProgress(5);
-        delayValueText.setText(delaySeconds + " secondes");
+        // Default delay display
+        delayValueText.setText("5 seconds");
 
-        delaySeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                delaySeconds = Math.max(1, progress);
-                delayValueText.setText(delaySeconds + " secondes");
-            }
-
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {}
-
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {}
-        });
-
-        // Start fake call button
+        // Start fake call
         startCallBtn.setOnClickListener(v -> scheduleFakeCall());
 
-        // Accept button
+        // Accept call
         acceptBtn.setOnClickListener(v -> {
             stopRingtone();
             showActiveCallScreen();
         });
 
-        // Decline button
+        // Decline call
         declineBtn.setOnClickListener(v -> {
             stopRingtone();
             endCall();
         });
+        Intent intent = getIntent();
+        String callerName = intent.getStringExtra("callerName");
+        if (callerName != null) {
+            triggerFakeCall(callerName);
+        }
+
     }
 
     private void scheduleFakeCall() {
+
+        // Caller name
         String callerName = callerNameInput.getText().toString().trim();
-        if (callerName.isEmpty()) {
-            callerName = "Maman";
+        if (callerName.isEmpty()) callerName = "Mom";
+
+        // Delay text
+        String delayText = delayEditText.getText().toString().trim();
+        if (delayText.isEmpty()) {
+            Toast.makeText(this, "Veuillez entrer le délai en secondes", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        delaySeconds = Integer.parseInt(delayText);
+        delayValueText.setText(delaySeconds + " seconds");
 
         final String finalCallerName = callerName;
 
         Toast.makeText(this, "Appel programmé dans " + delaySeconds + " secondes",
                 Toast.LENGTH_SHORT).show();
 
-        // Hide setup, show waiting message
         startCallBtn.setEnabled(false);
         startCallBtn.setText("En attente...");
 
-        handler.postDelayed(() -> triggerFakeCall(finalCallerName), delaySeconds * 1000L);
+        Intent serviceIntent = new Intent(this, FakeCallService.class);
+        serviceIntent.putExtra("callerName", finalCallerName);
+        serviceIntent.putExtra("delay", delaySeconds);
+        startService(serviceIntent);
     }
 
     private void triggerFakeCall(String callerName) {
-        // Show incoming call screen
+
         incomingCallerName.setText(callerName);
         incomingCallLayout.setVisibility(View.VISIBLE);
 
-        // Make screen show over lock screen
+        // Show screen over lock screen
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
                 | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
                 | WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON
                 | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON);
 
-        // Play ringtone
         playRingtone();
 
         // Vibrate
@@ -129,18 +135,23 @@ public class FakeCallActivity extends AppCompatActivity {
             vibrator.vibrate(pattern, 0);
         }
     }
-
     private void playRingtone() {
         try {
-            Uri ringtoneUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_RINGTONE);
-            ringtonePlayer = MediaPlayer.create(this, ringtoneUri);
-            ringtonePlayer.setAudioStreamType(AudioManager.STREAM_RING);
+            stopRingtone();
+
+            // Charger le fichier musique.mp3 depuis res/raw
+            ringtonePlayer = MediaPlayer.create(this, R.raw.musique);
+            ringtonePlayer.setAudioStreamType(AudioManager.STREAM_MUSIC); // ou STREAM_RING si tu veux
             ringtonePlayer.setLooping(true);
             ringtonePlayer.start();
+
         } catch (Exception e) {
             e.printStackTrace();
+            Toast.makeText(this, "Impossible de lire la sonnerie", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
     private void stopRingtone() {
         if (ringtonePlayer != null) {
@@ -153,6 +164,7 @@ public class FakeCallActivity extends AppCompatActivity {
 
     private void showActiveCallScreen() {
         incomingCallLayout.setVisibility(View.GONE);
+
         Toast.makeText(this, "Appel en cours avec " + incomingCallerName.getText(),
                 Toast.LENGTH_LONG).show();
 
@@ -163,9 +175,11 @@ public class FakeCallActivity extends AppCompatActivity {
     private void endCall() {
         incomingCallLayout.setVisibility(View.GONE);
         startCallBtn.setEnabled(true);
-        startCallBtn.setText("Démarrer l'appel simulé");
+        startCallBtn.setText("Schedule Fake Call");
+
         Toast.makeText(this, "Appel terminé", Toast.LENGTH_SHORT).show();
-        finish();
+
+
     }
 
     @Override
