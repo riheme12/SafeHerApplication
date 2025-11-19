@@ -20,6 +20,10 @@ public class MainActivity extends AppCompatActivity {
     private LinearLayout fakeCallRow;
     private LinearLayout safeMapRow;
     private LinearLayout emergencyContactRow;
+    private LinearLayout incidentreportsRow;
+    private LinearLayout awarenessrightRow;
+    private LinearLayout supportresourceRow;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +35,32 @@ public class MainActivity extends AppCompatActivity {
         fakeCallRow = findViewById(R.id.fakeCallRow);
         safeMapRow = findViewById(R.id.safeMapRow);
         emergencyContactRow = findViewById(R.id.emergencyContactRow);
+        supportresourceRow=findViewById(R.id.supportResourcesRow);
+        awarenessrightRow=findViewById(R.id.awarenessRightsRow);
+        awarenessrightRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "Awareness & right clicked", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, AwarenessRightsActivity.class));
+            }
+        });
+        supportresourceRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "support resources clicked", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, SupportResourcesActivity.class));
+            }
+        });
+        incidentreportsRow=findViewById(R.id.incidentDiaryRow);
+
+        incidentreportsRow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(MainActivity.this, "incident diary Clicked", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(MainActivity.this, ReportingToolsActivity.class));
+            }
+        });
+
 
         setGreeting();
 

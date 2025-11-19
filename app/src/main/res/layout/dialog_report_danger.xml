@@ -29,34 +29,37 @@
                 android:id="@+id/dangerLocationInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="#F3F0F1"
                 android:hint="Localisation (nom de rue) *"
                 android:inputType="text"
                 android:padding="12dp"
-                android:background="#F8F8FF"
-                android:layout_marginBottom="12dp"/>
+                android:textColor="#0B0A0A" />
 
             <EditText
                 android:id="@+id/dangerTitleInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                android:background="#F3F0F1"
                 android:hint="Type de danger (ex: Harcèlement, Éclairage faible) *"
                 android:inputType="text"
                 android:padding="12dp"
-                android:background="#F8F8FF"
-                android:layout_marginBottom="12dp"/>
+                android:textColor="#090909" />
 
             <EditText
                 android:id="@+id/dangerDescriptionInput"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="#F8F8FF"
+                android:gravity="top"
                 android:hint="Description détaillée (optionnel)"
                 android:inputType="textMultiLine"
-                android:minLines="3"
                 android:maxLines="5"
-                android:gravity="top"
+                android:minLines="3"
                 android:padding="12dp"
-                android:background="#F8F8FF"
-                android:layout_marginBottom="16dp"/>
+                android:textColor="#0B0B0B" />
 
             <TextView
                 android:layout_width="match_parent"
