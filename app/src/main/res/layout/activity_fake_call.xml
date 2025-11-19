@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FakeCallActivity">
+    android:background="#F5F5F5">
+
+    <!-- Configuration Section -->
     <ScrollView
+        android:id="@+id/setupLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="20dp">
@@ -17,224 +18,370 @@
 
             <!-- Header -->
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Appel Simulé"
+                android:text="Fake Call"
                 android:textSize="28sp"
                 android:textStyle="bold"
-                android:textColor="#2E2E2E"
-                android:gravity="center"
-                android:paddingBottom="8dp"/>
+                android:textColor="#333333"
+                android:layout_marginBottom="8dp"/>
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Configurez votre faux appel d'urgence"
+                android:text="Generate a realistic fake incoming call to help you escape uncomfortable or dangerous situations discreetly."
                 android:textSize="14sp"
-                android:textColor="#696969"
-                android:gravity="center"
-                android:paddingBottom="32dp"/>
+                android:textColor="#666666"
+                android:layout_marginBottom="24dp"/>
 
             <!-- Caller Name Input -->
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nom de l'appelant"
+                android:text="Caller Name"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#2E2E2E"
-                android:paddingBottom="8dp"/>
+                android:textColor="#333333"
+                android:layout_marginBottom="8dp"/>
 
             <EditText
                 android:id="@+id/callerNameInput"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Ex: Maman, Papa, Marie..."
-                android:padding="16dp"
-                android:background="#F8F8FF"
+                android:layout_height="50dp"
+                android:hint="Mom"
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:background="@android:color/white"
                 android:textSize="16sp"
-                android:inputType="textPersonName"
                 android:layout_marginBottom="24dp"/>
 
             <!-- Delay Section -->
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Délai avant l'appel"
+                android:text="Delay (seconds)"
                 android:textSize="16sp"
                 android:textStyle="bold"
-                android:textColor="#2E2E2E"
-                android:paddingBottom="8dp"/>
+                android:textColor="#333333"
+                android:layout_marginBottom="8dp"/>
 
             <TextView
                 android:id="@+id/delayValueText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 seconds"
+                android:textSize="14sp"
+                android:textColor="#9C27B0"
+                android:layout_marginBottom="8dp"/>
+
+            <EditText
+                android:id="@+id/delayEditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="5 secondes"
-                android:textSize="20sp"
-                android:textColor="#DCA3E6"
+                android:hint="Entrer le délai en millisecondes"
+                android:inputType="number"
+                android:padding="12dp"
+                android:background="@android:drawable/edit_text"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Quick Presets -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quick Presets"
+                android:textSize="16sp"
                 android:textStyle="bold"
-                android:gravity="center"
-                android:paddingBottom="8dp"/>
+                android:textColor="#333333"
+                android:layout_marginBottom="12dp"/>
 
-            <SeekBar
-                android:id="@+id/delaySeekBar"
+            <!-- Preset 1 -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:max="60"
-                android:progress="5"
-                android:layout_marginBottom="32dp"/>
+                android:orientation="horizontal"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:layout_marginBottom="12dp"
+                android:clickable="true">
 
-            <!-- Info Card -->
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="24dp"
-                app:cardBackgroundColor="#E8F5E9"
-                app:cardCornerRadius="12dp"
-                app:cardElevation="2dp">
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="📱"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:layout_marginRight="12dp"/>
 
                 <LinearLayout
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="ℹ️ Comment ça marche ?"
-                        android:textSize="14sp"
+                        android:text="Mom - 5 seconds"
+                        android:textSize="16sp"
                         android:textStyle="bold"
-                        android:textColor="#2E2E2E"
-                        android:paddingBottom="8dp"/>
+                        android:textColor="#333333"/>
 
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="• L'appel se déclenchera après le délai choisi\n• Votre téléphone sonnera comme un vrai appel\n• Vous pouvez accepter ou refuser l'appel\n• Utilisez cette fonction pour vous échapper d'une situation inconfortable"
-                        android:textSize="13sp"
-                        android:textColor="#696969"
-                        android:lineSpacingExtra="4dp"/>
+                        android:text="Quick escape call"
+                        android:textSize="14sp"
+                        android:textColor="#666666"/>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+            <!-- Preset 2 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:layout_marginBottom="12dp"
+                android:clickable="true">
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="💼"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:layout_marginRight="12dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Work - 10 seconds"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Professional excuse"
+                        android:textSize="14sp"
+                        android:textColor="#666666"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Preset 3 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@android:color/white"
+                android:padding="16dp"
+                android:layout_marginBottom="12dp"
+                android:clickable="true">
+
+                <TextView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="🚨"
+                    android:textSize="24sp"
+                    android:gravity="center"
+                    android:layout_marginRight="12dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Emergency - 3 seconds"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        android:textColor="#333333"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Immediate escape"
+                        android:textSize="14sp"
+                        android:textColor="#666666"/>
+                </LinearLayout>
+            </LinearLayout>
 
             <!-- Start Button -->
             <Button
                 android:id="@+id/startCallBtn"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Démarrer l'appel simulé"
-                android:textSize="18sp"
-                android:textStyle="bold"
+                android:layout_height="56dp"
+                android:text="Schedule Fake Call"
                 android:textColor="@android:color/white"
-                android:background="@color/primaryPink"
-                android:padding="16dp"
-                android:textAllCaps="false"/>
+                android:background="#9C27B0"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Tips Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="#E1BEE7"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="💡 Tips for Using Fake Calls"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:textColor="#333333"
+                    android:layout_marginBottom="12dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="- Set a short delay if you need to leave immediately"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="6dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="- Use a believable caller name for your situation"
+                    android:textSize="14sp"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="6dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="- Act naturally when the call comes in"
+                    android:textSize="14sp"
+                    android:textColor="#666666"/>
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>
 
-    <!-- Incoming Call Layout (Hidden by default) -->
-    <LinearLayout
+    <!-- Incoming Call Screen -->
+    <RelativeLayout
         android:id="@+id/incomingCallLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#1E1E1E"
-        android:gravity="center"
-        android:visibility="gone"
-        android:padding="32dp">
+        android:background="#9C27B0"
+        android:visibility="gone">
 
-        <ImageView
-            android:id="@+id/callerIcon"
-            android:layout_width="120dp"
-            android:layout_height="120dp"
-            android:src="@android:drawable/ic_menu_call"
-            app:tint="@android:color/white"
-            android:layout_marginBottom="24dp"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Appel entrant"
-            android:textColor="#B0B0B0"
-            android:textSize="16sp"
-            android:layout_marginBottom="8dp"/>
-
-        <TextView
-            android:id="@+id/incomingCallerName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Maman"
-            android:textColor="@android:color/white"
-            android:textSize="32sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="48dp"/>
-
-        <!-- Call Action Buttons -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:gravity="center"
-            android:layout_marginTop="64dp">
+            android:layout_centerInParent="true"
+            android:padding="40dp">
 
-            <!-- Decline Button -->
+            <!-- Caller Icon -->
+            <ImageView
+                android:id="@+id/callerIcon"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:src="@android:drawable/ic_menu_call"
+                android:background="#80FFFFFF"
+                android:padding="30dp"
+                android:layout_marginBottom="32dp"/>
+
+            <!-- Caller Name -->
+            <TextView
+                android:id="@+id/incomingCallerName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mom"
+                android:textSize="32sp"
+                android:textStyle="bold"
+                android:textColor="@android:color/white"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- Call Status -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Incoming call..."
+                android:textSize="18sp"
+                android:textColor="#E0E0E0"
+                android:layout_marginBottom="60dp"/>
+
+            <!-- Action Buttons -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_marginEnd="48dp">
-
-                <ImageView
-                    android:id="@+id/declineBtn"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    android:src="@android:drawable/ic_delete"
-                    app:tint="#FF3B30"
-                    android:padding="16dp"
-                    android:background="@android:drawable/button_onoff_indicator_on"
-                    android:clickable="true"
-                    android:focusable="true"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Refuser"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-
-            <!-- Accept Button -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
                 android:gravity="center">
 
-                <ImageView
-                    android:id="@+id/acceptBtn"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    android:src="@android:drawable/ic_menu_call"
-                    app:tint="#34C759"
-                    android:padding="16dp"
-                    android:background="@android:drawable/button_onoff_indicator_on"
-                    android:clickable="true"
-                    android:focusable="true"/>
-
-                <TextView
+                <!-- Decline Button -->
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Accepter"
-                    android:textColor="@android:color/white"
-                    android:textSize="14sp"
-                    android:layout_marginTop="8dp"/>
-            </LinearLayout>
-        </LinearLayout>
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_marginRight="40dp">
 
-    </LinearLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+                    <Button
+                        android:id="@+id/declineBtn"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="#F44336"
+                        android:text="✕"
+                        android:textSize="32sp"
+                        android:textColor="@android:color/white"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Decline"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+                <!-- Accept Button -->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/acceptBtn"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:background="#4CAF50"
+                        android:text="✓"
+                        android:textSize="32sp"
+                        android:textColor="@android:color/white"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Answer"
+                        android:textSize="12sp"
+                        android:textColor="@android:color/white"
+                        android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

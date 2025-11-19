@@ -12,6 +12,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 public class MainActivity extends AppCompatActivity {
     private ShakeDetector shakeDetector;
     private Button sosBtn;
@@ -78,6 +80,21 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
+        });
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNavigationView);
+
+        bottomNav.setSelectedItemId(R.id.nav_home);
+
+        bottomNav.setOnItemSelectedListener(item -> {
+            switch (item.getItemId()) {
+                case R.id.nav_home:
+                    return true;
+
+                case R.id.nav_profile:
+                    startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                    return true;
+            }
+            return false;
         });
     }
 
